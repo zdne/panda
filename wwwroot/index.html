@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    
+    <script src="graph.js"></script>
+    
+    <script type="text/javascript">//<![CDATA[
+    window.onload=function(){
+        renderGraph();
+    }//]]> 
+
+</script>    
+
+    <script type="application/json" id="data">
+    {
+        "nodes": [{
+            "name": "Universe",
+            "group": 1
+        }, {
+            "name": "object",
+            "group": 2
+        }],
+        "links": [{
+            "source": 0,
+            "target": 1,
+            "value": 1
+        }]
+    }
+    </script>
+
+    <style>
+        .node {
+            stroke: #fff;
+            stroke-width: 1.5px;
+        }
+        
+        .link {
+            stroke: #999;
+            stroke-opacity: .6;
+        }
+        
+        .link.inheritance {
+            stroke-opacity: 1;
+        }
+        
+        .link.property {
+            stroke-dasharray: 5, 5;
+        }
+        
+        .node text {
+            stroke-width: 0px;
+            pointer-events: none;
+            font: 15px sans-serif;
+        }
+    </style>
+
+</head>
+
+<body>
+<pre id="csvdata">
+source,target,relation
+Universe,object,inheritance
+Universe,array,property
+slunicko,zeme,a
+Universe,slunicko,b
+zeme,lide,a
+lide,zvirata,b
+Universe,zvirata,b
+</pre>
+
+<div>
+    <input type="button" value="Add Instance" onclick="renderGraph()" />
+</div>
+
+</body>
