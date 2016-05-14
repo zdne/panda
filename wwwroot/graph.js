@@ -1,24 +1,24 @@
 function renderGraph() {
 
-    //Constants for the SVG
+    // Constants for the SVG
     var width = 500,
         height = 500;
 
-    //Set up the colour scale
+    // Set up the color scale
     var color = d3.scale.category20();
 
-    //Set up the force layout
+    // Set up the force layout
     var force = d3.layout.force()
         .charge(-120)
         .linkDistance(80)
         .size([width, height]);
 
-    //Append a SVG to the body of the html page. Assign this SVG as an object to svg
+    // Append a SVG to the body of the html page. Assign this SVG as an object to svg
     var svg = d3.select("body").append("svg")
         .attr("width", width)
         .attr("height", height);
 
-    //Read the data from the mis element 
+    // Read the data from the data element 
     /*
     var mis = document.getElementById('data').innerHTML;
     graph = JSON.parse(mis);
@@ -43,21 +43,21 @@ function renderGraph() {
             (nodes[link.target] = { name: link.target });
     });
 
-    console.log(JSON.stringify(links, " ", 2));
-    console.log(JSON.stringify(nodes, " ", 2));
+    // console.log(JSON.stringify(links, " ", 2));
+    // console.log(JSON.stringify(nodes, " ", 2));
 
     force.nodes(d3.values(nodes))
         .links(links)
         .start()
 
-    //Create all the line svgs but without locations yet
+    // Create all the line svgs but without locations yet
     var link = svg.selectAll(".link")
         .data(force.links())
         .enter().append("line")
         .attr("class", "link")
         .style("marker-end", "url(#suit)")
 
-    //Do the same with the circles for the nodes - no 
+    // Do the same with the circles for the nodes - no 
     var node = svg.selectAll(".node")
         .data(force.nodes())
         .enter().append("g")
@@ -77,7 +77,8 @@ function renderGraph() {
             return d.name
         })
 
-    //Now we are giving the SVGs co-ordinates - the force layout is generating the co-ordinates which this code is using to update the attributes of the SVG elements
+    // Now we are giving the SVGs co-ordinates - the force layout is generating the 
+    //  co-ordinates which this code is using to update the attributes of the SVG elements
     force.on("tick", function () {
         link.attr("x1", function (d) {
             return d.source.x;
@@ -107,7 +108,6 @@ function renderGraph() {
             });
     });
 
-    //---Insert-------
     svg.append("defs").selectAll("marker")
         .data(["suit", "licensing", "resolved"])
         .enter().append("marker")
@@ -122,20 +122,11 @@ function renderGraph() {
         .attr("d", "M0,-5L10,0L0,5 L10,0 L0, -5")
         .style("stroke", "#4679BD")
         .style("opacity", "0.6");
-    //---End Insert---
 
+    // svg.append("g").selectAll("path")
+    //     .data(force.links())
+    //     .enter().append("path")
+    //     .attr("class", "link.property")
+    //     .attr("marker-end", "url(#end)");
 
-    svg.append("g").selectAll("path")
-        .data(force.links())
-        .enter().append("path")
-        .attr("class", "link.property")
-        .attr("marker-end", "url(#end)");
-
-
-}
-
-function dosomething() {
-    console.log("hello!!!");
-    var i = 42;
-    ++i;
 }
