@@ -50,14 +50,14 @@ function renderGraph() {
         .links(links)
         .start()
 
-    // Create all the line svgs but without locations yet
+    // Create all the links (without location)
     var link = svg.selectAll(".link")
         .data(force.links())
         .enter().append("line")
         .attr("class", "link")
         .style("marker-end", "url(#suit)")
 
-    // Do the same with the circles for the nodes - no 
+    // Create all the nodes
     var node = svg.selectAll(".node")
         .data(force.nodes())
         .enter().append("g")
@@ -109,7 +109,7 @@ function renderGraph() {
     });
 
     svg.append("defs").selectAll("marker")
-        .data(["suit", "licensing", "resolved"])
+        .data(["suit"])
         .enter().append("marker")
         .attr("id", function (d) { return d; })
         .attr("viewBox", "0 -5 10 10")
@@ -126,7 +126,7 @@ function renderGraph() {
     // svg.append("g").selectAll("path")
     //     .data(force.links())
     //     .enter().append("path")
-    //     .attr("class", "link.property")
-    //     .attr("marker-end", "url(#end)");
+    //     .attr("class", "link property")
+    //     //.attr("marker-end", "url(#end)");
 
 }
